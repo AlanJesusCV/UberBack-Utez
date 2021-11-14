@@ -1,12 +1,15 @@
 package com.edu.utez.Controller;
 
 
+import com.edu.utez.Service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import com.edu.utez.Entity.Usuario;
 import com.edu.utez.Repository.UsuarioRepository;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/uber")
@@ -17,6 +20,9 @@ import com.edu.utez.Repository.UsuarioRepository;
 public class UsuarioController {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+
+	@Autowired
+	private UsuarioService usuarioService;
 	
 	@GetMapping("usuario/getUsuario/{email}")
 	public Usuario getUsuario(@PathVariable("email") String email) {
@@ -24,6 +30,16 @@ public class UsuarioController {
 			return usuarioRepository.findByEmail(email);
 		}catch(Exception e) {
 			System.out.println("get Usuario "+e);
+			return null;
+		}
+	}
+
+	@GetMapping("usuario/getFiltroUsuario")
+	public List<Usuario> filtroUsuario(){
+		try {
+			return usuarioService.filtroUsuario();
+		} catch (Exception e){
+			System.out.println("Erorr controller filtro");
 			return null;
 		}
 	}

@@ -23,7 +23,7 @@ import com.edu.utez.jwt.JwtProvider;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/uber")
 @CrossOrigin(origins = "*",methods = {RequestMethod.POST})
 public class LoginController {
 	
@@ -33,7 +33,7 @@ public class LoginController {
 	private JwtProvider jwtProvider;
 	@Autowired
 	private UsuarioService usuarioService;
-	@PostMapping("/login")
+	@PostMapping("/auth/login")
 	public ResponseEntity<JwtDTO> responseEntity(@Valid @RequestBody LoginUsuario loginUsuario, 
 			BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
@@ -55,7 +55,7 @@ public class LoginController {
 			return new ResponseEntity("Usuario y/o contraseña incorrectos",HttpStatus.BAD_REQUEST);
 		}
 	}
-	@PostMapping("/register/{rol}")
+	@PostMapping("/auth/register/{rol}")
 	public ResponseEntity<?> saveUser(@Valid @RequestBody Usuario user,@PathVariable("rol") RolNombre rol){
 		
 		return ResponseEntity.ok(usuarioService.save(user, rol));

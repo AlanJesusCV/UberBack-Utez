@@ -51,12 +51,22 @@ public class UsuarioService {
 			
 			return usuarioRepository.existsById(usuarioRepository.save(usuario).getIdUsuario());
 		
+		}else{
+			return usuarioRepository.existsById(usuarioRepository.save(usuario).getIdUsuario());
 		}
-		return false;
 	}
 	
 	public boolean deleteUser(int id) {
 		usuarioRepository.deleteById(id);
 		return !usuarioRepository.existsById(id);
+	}
+
+	public List<Usuario> filtroUsuario(){
+		try {
+			return usuarioRepository.findbyFiltro();
+		}catch (Exception e){
+			System.out.println("Error en filtro usuarios"+e);
+			return null;
+		}
 	}
 }

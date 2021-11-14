@@ -27,15 +27,18 @@ public class Usuario {
 	
 	@NotNull
 	private String password;
-	
-	@Null
+
 	private String placas;
-	
-	@Null
+
 	private String modelo_auto;
-	
-	@Null
+
 	private String color_auto;
+
+	private boolean logeado;
+
+	private double latitud_actual;
+
+	private double longitud_actual;
 	
 	@ManyToMany
 	@JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "id_usuario"), inverseJoinColumns = @JoinColumn(name = "rol_id"))
@@ -109,6 +112,30 @@ public class Usuario {
 		this.color_auto = color_auto;
 	}
 
+	public boolean isLogeado() {
+		return logeado;
+	}
+
+	public void setLogeado(boolean logeado) {
+		this.logeado = logeado;
+	}
+
+	public double getLatitud_actual() {
+		return latitud_actual;
+	}
+
+	public void setLatitud_actual(double latitud_actual) {
+		this.latitud_actual = latitud_actual;
+	}
+
+	public double getLongitud_actual() {
+		return longitud_actual;
+	}
+
+	public void setLongitud_actual(double longitud_actual) {
+		this.longitud_actual = longitud_actual;
+	}
+
 	public List<Rol> getRoles() {
 		return roles;
 	}
@@ -116,6 +143,4 @@ public class Usuario {
 	public void setRoles(List<Rol> roles) {
 		this.roles = roles;
 	}
-
-	
 }
