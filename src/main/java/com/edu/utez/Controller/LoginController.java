@@ -55,10 +55,10 @@ public class LoginController {
 			return new ResponseEntity("Usuario y/o contraseña incorrectos",HttpStatus.BAD_REQUEST);
 		}
 	}
-	@PostMapping("/register")
-	public ResponseEntity<?> saveUser(@Valid @RequestBody Usuario user){
+	@PostMapping("/register/{rol}")
+	public ResponseEntity<?> saveUser(@Valid @RequestBody Usuario user,@PathVariable("rol") RolNombre rol){
 		
-		return ResponseEntity.ok(usuarioService.save(user, RolNombre.ROLE_USER));
+		return ResponseEntity.ok(usuarioService.save(user, rol));
 	}
 	
 
