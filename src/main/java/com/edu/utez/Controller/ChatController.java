@@ -22,18 +22,18 @@ public class ChatController {
 	PushNotificationServiceImpl push;
 	
 	@PostMapping("/enviarMensaje")
-	public Mensaje enviarMensaje(@RequestBody Mensaje mensaje) {
+	public boolean enviarMensaje(@RequestBody Mensaje mensaje) {
 		try {
 			
 			System.out.println("keys "+mensaje.getKeys().get(1));
-			System.out.println("title "+mensaje.toString());
-			System.out.println("mensaje "+mensaje);
+			System.out.println("title "+mensaje.getMessageTitle());
+			System.out.println("mensaje "+mensaje.getMessage());
 
-			push.sendPushNotification(mensaje.getKeys(),mensaje.getMessaggeTitle() ,  mensaje.getMessagge());
-			return mensaje;
+			push.sendPushNotification(mensaje.getKeys(),mensaje.getMessageTitle() ,  mensaje.getMessage());
+			return true;
 		}catch(Exception e) {
 			System.out.println(e);
-			return null;
+			return false;
 		}
 	}
 

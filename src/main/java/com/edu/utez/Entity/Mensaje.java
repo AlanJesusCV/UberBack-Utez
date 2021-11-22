@@ -8,9 +8,9 @@ public class Mensaje {
 
 	private List<String> keys;
 	
-	private String messaggeTitle;
+	private String messageTitle;
 	
-	private String messagge;
+	private String message;
 
 	public List<String> getKeys() {
 		return keys;
@@ -20,21 +20,22 @@ public class Mensaje {
 		this.keys = keys;
 	}
 
-	public String getMessaggeTitle() {
-		return messaggeTitle;
+	public String getMessageTitle() {
+		return messageTitle;
 	}
 
-	public void setMessaggeTitle(String messaggeTitle) {
-		this.messaggeTitle = messaggeTitle;
+	public void setMessageTitle(String messageTitle) {
+		this.messageTitle = messageTitle;
 	}
 
-	public String getMessagge() {
-		return messagge;
+	public String getMessage() {
+		return message;
 	}
 
-	public void setMessagge(String messagge) {
-		this.messagge = messagge;
+	public void setMessage(String message) {
+		this.message = message;
 	}
-	
+
+
 	
 }
