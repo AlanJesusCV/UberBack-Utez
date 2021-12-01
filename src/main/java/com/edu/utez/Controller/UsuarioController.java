@@ -27,8 +27,10 @@ public class UsuarioController {
 	@GetMapping("usuario/getUsuario/{email}")
 	public Usuario getUsuario(@PathVariable("email") String email) {
 		try {
-			return usuarioRepository.findByEmail(email);
-		}catch(Exception e) {
+			Usuario userAux = usuarioRepository.findByEmail(email);
+			 userAux.setRoles(null);
+			 return userAux;
+			}catch(Exception e) {
 			System.out.println("get Usuario "+e);
 			return null;
 		}

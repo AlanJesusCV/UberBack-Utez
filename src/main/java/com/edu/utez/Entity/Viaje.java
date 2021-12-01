@@ -19,27 +19,22 @@ public class Viaje {
     private int idViaje;
     
     @ManyToOne
-    @NotNull
     private Usuario taxista;
 
     @ManyToOne
-    @NotNull
     private  Usuario cliente;
     
-    @Null
     private String fechaViaje;
     
-    @Null
     private String horaInicio;
     
-    @NotNull
     private String ubicacion;
     
-    @NotNull
     private String destino;
     
-    @NotNull
     private String estatus;
+    
+    private double costo;
 
 	public Viaje() {
 		super();
@@ -109,6 +104,16 @@ public class Viaje {
 	public void setEstatus(String estatus) {
 		this.estatus = estatus;
 	}
+
+	public double getCosto() {
+		return costo;
+	}
+
+	public void setCosto(double costo) {
+		this.costo = costo;
+	}
+
+
 
 
     

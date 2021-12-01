@@ -63,7 +63,17 @@ public class UsuarioService {
 
 	public List<Usuario> filtroUsuario(){
 		try {
-			return usuarioRepository.findbyFiltro();
+			List<Usuario> listaAux = usuarioRepository.findbyFiltro();
+			List<Usuario> lista = new ArrayList<>();
+			
+			for(int i = 0; i<listaAux.size(); i++) {
+				if(listaAux.get(i).isLogeado() && listaAux.get(i).getToken() != null) {
+					lista.add(listaAux.get(i));
+				}
+			}
+			
+			return lista;
+			
 		}catch (Exception e){
 			System.out.println("Error en filtro usuarios"+e);
 			return null;

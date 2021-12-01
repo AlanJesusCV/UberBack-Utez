@@ -35,6 +35,8 @@ public class Usuario {
 	private String color_auto;
 
 	private boolean logeado;
+	
+	private String token;
 
 	private double latitud_actual;
 
@@ -143,4 +145,14 @@ public class Usuario {
 	public void setRoles(List<Rol> roles) {
 		this.roles = roles;
 	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+	
+	
 }

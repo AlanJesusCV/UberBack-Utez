@@ -19,5 +19,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
 
 	@Query(value = "SELECT * from usuario where (logeado = true); ", nativeQuery = true)
 	List<Usuario> findbyFiltro ();
+	
 
 }
