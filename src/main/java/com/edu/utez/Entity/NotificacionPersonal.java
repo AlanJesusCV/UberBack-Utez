@@ -1,7 +1,10 @@
 package com.edu.utez.Entity;
 
-public class Notificacion {
-	
+import java.util.List;
+
+public class NotificacionPersonal {
+	private List<String> keys;
+
 	private int idViaje;
 	
 	private String token;
@@ -10,9 +13,15 @@ public class Notificacion {
 	
 	private String title;
 	
-	private String de;
 	
-	private String a;
+	
+	public List<String> getKeys() {
+		return keys;
+	}
+
+	public void setKeys(List<String> keys) {
+		this.keys = keys;
+	}
 
 	public int getIdViaje() {
 		return idViaje;
@@ -46,21 +55,6 @@ public class Notificacion {
 		this.title = title;
 	}
 
-	public String getDe() {
-		return de;
-	}
-
-	public void setDe(String de) {
-		this.de = de;
-	}
-
-	public String getA() {
-		return a;
-	}
-
-	public void setA(String a) {
-		this.a = a;
-	}
-
+	
 	
 }

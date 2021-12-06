@@ -38,7 +38,7 @@ public class UsuarioService {
 		return usuarioRepository.existsByEmail(email);
 	}
 	public boolean save(Usuario usuario, RolNombre autoridad) {
-		Usuario us = usuarioRepository.findByEmail(usuario.getEmail());
+		Usuario us = usuarioRepository.findByIdUsuario(usuario.getIdUsuario());
 		
 		if(us == null) {
 			System.out.println(usuario);
@@ -51,9 +51,8 @@ public class UsuarioService {
 			
 			return usuarioRepository.existsById(usuarioRepository.save(usuario).getIdUsuario());
 		
-		}else{
-			return usuarioRepository.existsById(usuarioRepository.save(usuario).getIdUsuario());
 		}
+		return false;
 	}
 	
 	public boolean deleteUser(int id) {
@@ -65,7 +64,6 @@ public class UsuarioService {
 		try {
 			List<Usuario> listaAux = usuarioRepository.findbyFiltro();
 			List<Usuario> lista = new ArrayList<>();
-			
 			for(int i = 0; i<listaAux.size(); i++) {
 				if(listaAux.get(i).isLogeado() && listaAux.get(i).getToken() != null) {
 					lista.add(listaAux.get(i));
@@ -78,5 +76,24 @@ public class UsuarioService {
 			System.out.println("Error en filtro usuarios"+e);
 			return null;
 		}
+	}
+	
+	public boolean  editUser(Usuario usuario) {
+		Usuario us = usuarioRepository.findByIdUsuario(usuario.getIdUsuario());
+		usuario.setRoles(us.getRoles());
+		usuario.setEmail(us.getEmail());
+		usuario.setPassword(us.getPassword());
+		usuario.setNombre(us.getNombre());
+		usuario.setTelefono(us.getTelefono());
+		usuario.setColor_auto(us.getColor_auto());
+		usuario.setModelo_auto(us.getModelo_auto());
+		usuario.setToken(us.getToken());
+		usuario.setPlacas(us.getPlacas());
+		usuario.setTelefono(us.getTelefono());
+		
+		return usuarioRepository.existsById(usuarioRepository.save(usuario).getIdUsuario());
+
+		
+
 	}
 }

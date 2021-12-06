@@ -61,5 +61,9 @@ public class LoginController {
 		return ResponseEntity.ok(usuarioService.save(user, rol));
 	}
 	
+	@PostMapping("/auth/update")
+	public boolean updateUser (@RequestBody Usuario usuario) {
+		return usuarioService.editUser(usuario);
+	}
 
 }

@@ -89,7 +89,7 @@ public class ViajeService {
 			System.out.println(viajeApi.getIdViaje());
 			Viaje viaje = new Viaje();
 			Usuario user = usuarioRepository.findByIdUsuario(viajeApi.getIdUsuario());
-			Usuario taxista = usuarioRepository.findByIdUsuario(0);
+			Usuario taxista = usuarioRepository.findByIdUsuario(viajeApi.getIdTaxista());
 
 			int idTaxi = viajeApi.getIdTaxista();
 			Viaje viajeAux = viajeRepository.findByIdViaje(viajeApi.getIdViaje());
@@ -123,12 +123,18 @@ public class ViajeService {
 				viaje.setFechaViaje(viajeAux.getFechaViaje());
 				viaje.setHoraInicio(viajeAux.getHoraInicio());
 				viaje.setUbicacion(viajeAux.getUbicacion());
-				viaje.setEstatus(viajeApi.getEstatus());
 				viaje.setIdViaje(viajeApi.getIdViaje());
 				
-				if(idTaxi != 0) {
-					viaje.setTaxista(taxista);
+				if(viajeAux.getEstatus() == "Aceptado" && viajeApi.getEstatus() == "Aceptado") {
+					return null;
+				}else {
+					viaje.setEstatus(viajeApi.getEstatus());
+
 				}
+
+				
+				viaje.setTaxista(taxista);
+			
 				int idV = viajeRepository.save(viaje).getIdViaje();
 				
 				ViajeAux auxiliar = new ViajeAux();
@@ -169,6 +175,8 @@ public class ViajeService {
 			 detalle.setUbicacion(viajeAux.getUbicacion());
 			 detalle.setDestino(viajeAux.getDestino());
 			 detalle.setIdViaje(viajeAux.getIdViaje());
+			 detalle.setCliente(viajeAux.getCliente().getNombre());
+			 
 			 return detalle;
 			
 		}catch(Exception e){

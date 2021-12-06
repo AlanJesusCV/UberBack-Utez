@@ -8,13 +8,13 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-@Service
-public class ViajeNotificationService {
+ @Service
+public class PersonalNotification {
     private final String FIREBASE_API_URL = "https://fcm.googleapis.com/fcm/send";
     private final String FIREBASE_SERVER_KEY = "AAAAdFHT1XQ:APA91bG4bTbJsdhlvlj9j40-YJ2O_5pQuEeCGNJ8W7HapqEbizI7k_Vgj85eaXl9W011w8d0oA9KUuid6ZqzeZKMfCsJSzcddr7x-x0svf3zpm8ZV3YcDb_-0PC5ghS3D204H9i27dOJ";
 
 
-    public void sendPushNotification(List<String> keys, String messageTitle, String message, int idViaje, String token, String de, String a ) {
+    public void sendPushNotification(List<String> keys, String messageTitle, String message, int idViaje, String token ) {
 
 
     	JSONObject msg = new JSONObject();
@@ -24,8 +24,7 @@ public class ViajeNotificationService {
         msg.put("notificationType", "Test");
         msg.put("idViaje", idViaje);
         msg.put("token", token);
-        msg.put("de", de);
-        msg.put("a", a);
+
         
 
         keys.forEach(key -> {
