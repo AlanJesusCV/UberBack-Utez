@@ -87,10 +87,20 @@ public class UsuarioService {
 		usuario.setTelefono(us.getTelefono());
 		usuario.setColor_auto(us.getColor_auto());
 		usuario.setModelo_auto(us.getModelo_auto());
-		usuario.setToken(us.getToken());
 		usuario.setPlacas(us.getPlacas());
 		usuario.setTelefono(us.getTelefono());
+		usuario.setLogeado(usuario.isLogeado());
+		usuario.setIdUsuario(usuario.getIdUsuario());
 		
+		if(usuario.getToken() != null) {
+			usuario.setToken(usuario.getToken());
+
+		}else {
+			usuario.setToken(us.getToken());
+		}
+		
+			
+			
 		return usuarioRepository.existsById(usuarioRepository.save(usuario).getIdUsuario());
 
 		
