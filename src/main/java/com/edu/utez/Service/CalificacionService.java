@@ -4,10 +4,13 @@ package com.edu.utez.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.edu.utez.Entity.AuxCalificacion;
 import com.edu.utez.Entity.Calificacion;
 import com.edu.utez.Entity.Usuario;
+import com.edu.utez.Entity.Viaje;
 import com.edu.utez.Repository.CalificacionRepository;
 import com.edu.utez.Repository.UsuarioRepository;
+import com.edu.utez.Repository.ViajeRepository;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -22,6 +25,9 @@ public class CalificacionService {
 
     @Autowired
     CalificacionRepository calificacionRepository;
+    
+    @Autowired 
+    ViajeRepository viajeRepository;
 
     public Calificacion getCalificacion (int id){
         try{
@@ -41,15 +47,25 @@ public class CalificacionService {
         }
     }
 
-    public boolean saveCalificacion( Calificacion calificacion){
+    public boolean saveCalificacion( AuxCalificacion calificacion){
         try {
-            Usuario TaxistaAux = usuarioRepository.findByIdUsuario(calificacion.getTaxista().getIdUsuario());
-            Usuario ClienteAux = usuarioRepository.findByIdUsuario(calificacion.getCliente().getIdUsuario());
+        	
+        	Viaje viaje = viajeRepository.findByIdViaje(calificacion.getIdViaje());
+        	
+            Usuario TaxistaAux = usuarioRepository.findByIdUsuario(viaje.getTaxista().getIdUsuario());
+            Usuario ClienteAux = usuarioRepository.findByIdUsuario(viaje.getCliente().getIdUsuario());
+            
+            
+            Calificacion calificacionAux = new Calificacion();
+            
+            
+            calificacionAux.setCliente(ClienteAux);
+            calificacionAux.setTaxista(TaxistaAux);
+            calificacionAux.setViaje(viaje);
+            calificacionAux.setCalificacion(calificacion.getCalificacion());
+     
 
-            calificacion.setCliente(ClienteAux);
-            calificacion.setTaxista(TaxistaAux);
-
-            return calificacionRepository.existsById(calificacionRepository.save(calificacion).getIdCalificacion());
+            return calificacionRepository.existsById(calificacionRepository.save(calificacionAux).getIdCalificacion());
         }catch (Exception e){
             System.out.println("Registro calificacion "+e);
             return false;

@@ -25,8 +25,22 @@ public class Calificacion {
 
     @NotNull
     private int calificacion;
+    
+    @ManyToOne
+    @NotNull
+    private Viaje viaje;
+    
+    
 
-    public int getIdCalificacion() {
+    public Viaje getViaje() {
+		return viaje;
+	}
+
+	public void setViaje(Viaje viaje) {
+		this.viaje = viaje;
+	}
+
+	public int getIdCalificacion() {
         return idCalificacion;
     }
 

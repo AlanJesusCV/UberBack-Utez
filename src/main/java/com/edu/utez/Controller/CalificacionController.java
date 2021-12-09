@@ -4,6 +4,7 @@ package com.edu.utez.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.edu.utez.Entity.AuxCalificacion;
 import com.edu.utez.Entity.Calificacion;
 import com.edu.utez.Service.CalificacionService;
 import com.edu.utez.Service.UsuarioService;
@@ -27,7 +28,7 @@ public class CalificacionController {
     }
 
     @PostMapping("/calificacion/saveCalificacion")
-    public boolean saveCalificacion(@RequestBody Calificacion calificacion){
+    public boolean saveCalificacion(@RequestBody AuxCalificacion calificacion){
         return calificacionService.saveCalificacion(calificacion);
     }
 
